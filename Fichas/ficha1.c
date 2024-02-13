@@ -59,7 +59,7 @@
 // Exercicio 1
 
 void quadrado (int n) {
-    int i, j = 0;
+    int i, j;
     for (j = 0; j < n; j++){
         for (i = 0; i < n; i++){
             putchar ('#');
@@ -71,7 +71,7 @@ void quadrado (int n) {
 //Exercicio 2
 
 void xadrez (int n) {
-    int i, j = 0;
+    int i, j;
     for (j = 0; j < n; j++){
         for (i = 0; i < n; i++){
             if (j%2 == 0){
@@ -88,6 +88,38 @@ void xadrez (int n) {
                 
             }
         }
+        putchar ('\n');
+    }
+}
+
+//Exercicio 3
+
+void trianguloH (int n){
+    int i, j;
+    for (i = 1; i <= n; i++){
+        for (j = 0; j < i; j++)
+            putchar ('#');
+        putchar ('\n');
+    }
+
+    for (i = n-1; i > 0; i--){
+        for (j = 0; j < i; j++)
+            putchar ('#');
+        putchar ('\n');
+    }
+}
+
+void trianguloV (int n){
+    int i, j, k;
+    int a = 0;
+    for (i = 1; i <= n; i++){
+        for (j = 1; j <= n - i; j++){
+            putchar(' ');
+        }
+        for (k = 0; k <= a; k++){
+            putchar('#');
+        }
+        a+=2;
         putchar ('\n');
     }
 }
