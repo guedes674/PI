@@ -123,3 +123,20 @@ void trianguloV (int n){
         putchar ('\n');
     }
 }
+
+// Exercicio 4 (não completa e incorreta)
+
+//int circulo (int raio){
+//    int i, j, k;
+//    int a = 0;
+//    for (i = 1; i <= raio; i++){
+//        for (j = 1; j <= raio - i; j++){
+//            putchar(' ');
+//        }
+//        for (k = 0; k <= a; k++){
+//            putchar('#');
+//        }
+//        a+=2;
+//        putchar ('\n');
+//    }
+//}
