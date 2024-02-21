@@ -110,10 +110,10 @@ int mdc4 (int a, int b, int *count){
 int fib1 (int n){
     int res = 0;
 
-    while(n >= 2){
-        res = fib1(n-1) + fib1(n-2);
-        n --;
-    }
-    res += 1;
+        if (n >= 2){
+            res += fib1(n-1) + fib1(n-2);
+        }else if (n > 0 && n < 2){
+            res += 1;
+        }
     return res;
 }
