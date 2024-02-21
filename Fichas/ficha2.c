@@ -107,13 +107,13 @@ int mdc4 (int a, int b, int *count){
 
 // A
 
-int fib1 (int n){
+int fib (int n){
     int res = 0;
-
-        if (n >= 2){
-            res += fib1(n-1) + fib1(n-2);
-        }else if (n > 0 && n < 2){
-            res += 1;
-        }
+        if (n > 2){
+            res = fib(n-1) + fib(n-2);
+        }else if (n == 2 || n == 1){
+            res = 1;
+        }else
+            res = 0;
     return res;
 }
