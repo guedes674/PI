@@ -117,3 +117,22 @@ int fib (int n){
             res = 0;
     return res;
 }
+
+// B
+
+int fastfib (int n){
+    int aux = 0, i, a = 0, b = 1;
+
+    if(n == 1 || n == 2){
+        return 1;
+    }else if (n < 1){
+        return 0;
+    }else{
+        for(i = 2; i <= n; i++){
+            aux = a + b;
+            a = b;
+            b = aux;
+        }
+        return b;
+    }
+}
