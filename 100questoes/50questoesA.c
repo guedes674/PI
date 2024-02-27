@@ -106,6 +106,54 @@ char *mystrcat (char s1[], char s2[]){
     return newstr;
 }
 
+//8
+char *mystrcpy (char *dest, char source[]){
+    int i;
+
+    for(i = 0; source[i] != '\0'; i++){
+        dest[i] = source[i];
+    }
+    dest[i] = '\0';
+    
+    return dest;
+}
+
+//9
+int mystrcmp (char s1[], char s2[]){
+    int i = 0, r = 0;
+
+    while (s1[i] == s2[i] && s1[i] != '\0' && s2[i] != '\0'){
+        i++;
+    }
+    if(s1[i] > s2[i])
+        r = 1;
+    else if(s1 [i] < s2[i])
+        r = -1;
+    
+    return r;
+}
+
+//10
+char *mystrstr (char s1[], char s2[]){
+    int i = 0, j = 0;
+    char* ret = s1;
+
+    while (s1[i] != s2[j] && s1[i] != '\0' && s1[i] != '\n'){
+        i++;
+        ret++;
+    }
+    if(s1[i] != '\0'){
+        while(s1[i] == s2[j] && s1[i] != '\0' && s2 != '\0'){
+            i++;
+            j++;
+        }
+        if (s2[j] != '\0'){
+            ret = NULL;
+        }
+    }
+    return ret;
+}
+
 int main(){
     int perg = 0;
 
