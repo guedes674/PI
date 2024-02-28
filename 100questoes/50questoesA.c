@@ -154,6 +154,37 @@ char *mystrstr (char s1[], char s2[]){
     return ret;
 }
 
+//11
+void strrev (char s[]){
+    int i = strlen(s)-1, j = 0;
+    char newstr[strlen(s)];
+    
+    for(; i >= 0; i--){
+        newstr[j] = s[i];
+        j++;
+    }
+    newstr[j] = '\0';
+    strcpy(s,newstr);
+}
+
+//12
+void strnoV (char s[]){
+    int i = 0, j = 0, k = 0;
+    char newstr[strlen(s)];
+
+    while(s[i] != '\0'){
+        if(s[i] == 'a' || s[i] == 'A' || s[i] == 'e' || s[i] == 'E' || s[i] == 'i' || s[i] == 'I' || s[i] == 'o' || s[i] == 'O' || s[i] == 'u' || s[i] == 'U'){
+            i++;
+        }else{
+            newstr[j] = s[i];
+            i++;
+            j++;
+        }
+    }
+    newstr[j] = '\0';
+    strcpy(s,newstr);
+}
+
 int main(){
     int perg = 0;
 
