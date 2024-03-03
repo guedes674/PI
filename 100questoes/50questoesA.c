@@ -308,6 +308,28 @@ int maiorSufixo (char s1 [], char s2 []){
     return r;
 }
 
+//19
+int sufPref (char s1[], char s2[]){
+    int i = 0, j = 0, maior = 0, acc = 0;
+
+    for(i = 0; s1[i]; i++){
+        while(s1[i] != s2[j]){
+            i++;
+        }
+        while(s1[i] == s2[j] && s1[i] && s2[j]){
+            i++;
+            j++;
+            acc++;
+        }
+        if(acc > maior && s1[i] == '\0'){
+            maior = acc;
+        }
+        acc = 0;
+        j = 0;
+    }
+    return maior;
+}
+
 int main(){
     int perg = 0;
 
