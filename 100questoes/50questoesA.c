@@ -280,6 +280,34 @@ int difConsecutivos (char s[]){
     return maiorSeq;
 }
 
+//17
+int maiorPrefixo (char s1 [], char s2 []){
+    int i = 0;
+
+    while(s1[i] == s2[i] && s1[i] != '\0' && s2[i] != '\0'){
+        i++;
+    }
+    return i;
+}
+
+//18
+int maiorSufixo (char s1 [], char s2 []){
+    int i = 0, j = 0;
+    while(s1[i+1])
+        i++;
+    while(s2[j+1])
+        j++;
+
+    int r = 0;
+
+    while(s1[i] == s2[j] && i >= 0 && j >= 0){
+        r++;
+        i--;
+        j--;
+    }
+    return r;
+}
+
 int main(){
     int perg = 0;
 
