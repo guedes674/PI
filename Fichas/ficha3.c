@@ -59,3 +59,20 @@ void inverteArrayV2(int v[], int N){
         j--;
     }
 }
+
+//6
+int maximum (int v[], int N, int *m){
+    int i, maior = 0, ret = 0;
+
+    if(N > 0){
+        for(i = 0; i < N; i++){
+            if(v[i] > maior){
+                maior = v[i];
+                *m = v[i];
+        }
+    }
+    }else{
+        ret = -1;
+    }
+    return ret;
+}
