@@ -105,7 +105,7 @@ void pascal (int v[], int N){
 }
 
 void desenhaTriangulpP (int N){
-    int i, j, tam = 0, sNumb = (N-1)/2;
+    int i, j, tam = 0, sNumb = (N-1);
     int v[N];
     int aux = sNumb;
 
