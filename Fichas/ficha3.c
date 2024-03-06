@@ -76,3 +76,57 @@ int maximum (int v[], int N, int *m){
     }
     return ret;
 }
+
+//7
+void quadrados (int q[], int N){
+    int i, acc = 0;
+    q[0] = acc;
+
+    for(i = 0; i <= N; i++){
+        acc += (2*i) + 1;
+        q[i] = acc;
+    }
+}
+
+//8
+void pascal (int v[], int N){
+    int i, j, tam = 0;
+
+    for(j = 0; j <= N; j++){
+        for(i = tam; i >= 0; i--){
+            if(i == 0 || i == tam){
+                v[i] = 1;
+            }else{
+                v[i] += v[i-1];
+            }
+        }
+        tam++;
+    }
+}
+
+void desenhaTriangulpP (int N){
+    int i, j, tam = 0, sNumb = (N-1)/2;
+    int v[N];
+    int aux = sNumb;
+
+    for(j = 0; j <= N; j++){
+        for(i = tam; i >= 0; i--){
+            while(sNumb >= 0){
+                printf(" ");
+                sNumb --;
+            }
+            if(i == 0 || i == tam){
+                v[i] = 1;
+                printf("%d", v[i]);
+            }else{
+                v[i] += v[i-1];
+                printf("%d", v[i]);
+            }
+            printf(" ");
+        }
+        printf("\n");
+        tam++;
+        aux--;
+        sNumb = aux;
+    }
+}
