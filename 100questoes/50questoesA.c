@@ -344,6 +344,48 @@ int contaPal (char s[]){
     return count;
 }
 
+//21
+int contaVogais (char s[]){
+    int i = 0, count = 0;
+
+    while(s[i] != '\0'){
+        if(s[i] == 'A' || s[i] == 'a' || s[i] == 'E' || s[i] == 'e' || s[i] == 'I' || s[i] == 'i' || s[i] == 'O' || s[i] == 'o' || s[i] == 'U' || s[i] == 'u'){
+            count++;
+        }
+        i++;
+    }
+    return count;
+}
+
+//22
+int contida (char a[], char b[]){
+    int i = 0, j = 0;
+
+    for(i = 0; a[i] != '\0'; i++){
+        for(j = 0; b[j] != '\0' && a[i] != b[j]; j++){
+            
+        }
+        if(b[j] == '\0'){
+            return 0;
+        }
+    }
+    return 1;
+}
+
+//23
+int palindroma (char s[]){
+    int i = 0, j = strlen(s)-1;
+
+    while(s[i] != '\0'){
+        if(s[i] != s[j]){
+            return 0;
+        }
+        i++;
+        j--;
+    }
+    return 1;
+}
+
 int main(){
     int perg = 0;
 
