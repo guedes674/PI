@@ -330,6 +330,20 @@ int sufPref (char s1[], char s2[]){
     return maior;
 }
 
+
+//20
+int contaPal (char s[]){
+    int i = 0, count = 0;
+
+    while(s[i] != '\0'){
+        if (s[i] != ' ' && s[i] != '\n' && (s[i+1] == ' ' || s[i+1] == '\0' || s[i+1] == '\n')){
+            count++;
+        }
+        i++;
+    }
+    return count;
+}
+
 int main(){
     int perg = 0;
 
