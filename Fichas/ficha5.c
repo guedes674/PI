@@ -48,3 +48,17 @@ void ordenaPorNum (Aluno t [], int N){
         }
     }
 }
+
+//4
+void criaIndPorNum (Aluno t [], int N, int ind[]){
+    Aluno aux;
+    int i, j;
+
+    for(i = 0; i < N; i++){
+        for(j = 0; j < N; j++){
+            if(t[i].numero > t[j].numero){
+                ind[i] += 1;
+            }
+        }
+    }
+}
