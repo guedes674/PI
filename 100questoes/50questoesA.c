@@ -386,6 +386,23 @@ int palindroma (char s[]){
     return 1;
 }
 
+//24
+int remRep (char x[]){
+    char ant;
+    int i = 0, j;
+
+    while(x[i] != '\0'){
+        if(x[i] == x[i+1]){
+            for(j = i; x[j] != '\0'; j++){
+                x[j] = x[j+1];
+            }
+            i--;
+        }
+        i++;
+    }
+    return strlen(x);
+}
+
 int main(){
     int perg = 0;
 
