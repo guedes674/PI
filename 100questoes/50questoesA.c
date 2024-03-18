@@ -516,6 +516,42 @@ int menosFreq (int v[], int N){
     return ret;
 }
 
+//31
+int maisFreq (int v[], int N){
+    int ret = v[0], vzs = 0, i = 0, j = 0, count = 0;
+
+    for(i = 0; i < N; i++){
+        for(j = 0; j < N; j++){
+            if(v[i] == v[j]){
+                count++;
+            }
+        }
+        if(count > vzs){
+            ret = v[i];
+            vzs = count;
+        }
+        count = 0;
+    }
+    return ret;
+}
+
+//32
+int maxCresc (int v[], int N){
+    int vzs = 0, i = 0, j = 0, count = 1;
+
+    for(i = 0; i < N; i++){
+        if(v[i] <= v[i+1]){
+            count++;
+        }else{
+            if(count > vzs){
+                vzs = count;
+            }
+            count = 1;
+        }
+    }
+    return vzs;
+}
+
 int main(){
     int perg = 0;
 
