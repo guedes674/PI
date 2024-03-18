@@ -388,7 +388,6 @@ int palindroma (char s[]){
 
 //24
 int remRep (char x[]){
-    char ant;
     int i = 0, j;
 
     while(x[i] != '\0'){
@@ -400,7 +399,121 @@ int remRep (char x[]){
         }
         i++;
     }
-    return strlen(x);
+    return i;
+}
+
+//25
+int limpaEspacos (char t[]){
+    int i = 0, j;
+
+    while(t[i] != '\0'){
+        if(t[i] == ' ' && t[i+1] == ' '){
+            j = i+1;
+            while(t[j] != '\0'){
+                t[j] = t[j+1];
+                j++;
+            }
+            i--;
+        }
+        i++;
+    }
+    return i;
+}
+
+//26
+void insere (int v[], int N, int x){
+    int i = 0, j = 0;
+
+    while(v[i] <= x){
+        i++;
+    }
+    j = N+1;
+
+    while(j > i){
+        v[j] = v[j-1];
+        j--;
+    }
+    v[i] = x;
+}
+
+//27
+void merge (int r[], int a[], int b[], int na, int nb){
+    int i = 0,j = 0, k = 0;
+
+    while(i < na && j < nb){
+        if(a[i] < b[j]){
+            r[k] = a[i];
+            k++;
+            i++;
+        }else{
+            r[k] = b[j];
+            k++;
+            j++;
+        }
+    }
+
+    if(i >= na){
+        while(j < nb){
+            r[k] = b[j];
+            k++;
+            j++;
+        }
+    }else{
+        while(i < na){
+            r[k] = a[i];
+            k++;
+            i++;
+        }
+    }
+}
+
+//28
+int crescente (int a[], int i, int j){
+    while(i+1 <= j){
+        if(a[i] > a[i+1]){
+            return 0;
+        }
+        i++;
+    }
+    return 1;
+}
+
+//29
+int retiraNeg (int v[], int N){
+    int i = 0, j = 0;
+
+    while(i < N){
+        if(v[i] < 0){
+            j = i + 1;
+            while(j < N){
+                v[j-1] = v[j];
+                j++;
+            }
+            N--;
+            i--;
+        }
+        i++;
+    }
+    return i;
+}
+
+//30
+int menosFreq (int v[], int N){
+    int ret = v[0], vzs = N, i = 0, j = 0, count = 0;
+
+    for(i = 0; i < N; i++){
+        for(j = 0; j < N; j++){
+            if(v[i] == v[j]){
+                count++;
+            }
+        }
+        if(count < vzs){
+            ret = v[i];
+            vzs = count;
+        }
+        count = 0;
+    }
+    return ret;
 }
 
 int main(){
