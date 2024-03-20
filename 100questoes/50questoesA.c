@@ -552,6 +552,99 @@ int maxCresc (int v[], int N){
     return vzs;
 }
 
+//33
+int contem (int v[], int b, int x){
+    int i;
+    for(i = 0; i < b; i++){
+        if(v[i] == x){
+            return 1;
+        }
+    }
+    return 0;
+}
+
+int elimRep (int v[], int n){
+    int i, j;
+
+    for(i = 0; i < n; i++){
+        if((contem(v, i, v[i]))){
+            j = i;
+            n--;
+            while(j < n){
+                v[j] = v[j+1];
+                j++;
+            }
+            i--;
+        }
+    }
+    return i;
+}
+
+//34
+int elimRepOrd (int v[], int n){
+    int i, j;
+
+    for(i = 0; i < n; i++){
+        if(v[i] == v[i+1] && n > 1){
+            j = i+1;
+            while(j < n){
+                v[j] = v[j+1];
+                j++;
+            }
+            i--;
+            n--;
+        }
+    }
+    return i;
+}
+
+//35
+int comunsOrd (int a[], int na, int b[], int nb){
+    int i = 0, j = 0, count = 0;
+
+    while(i < na && j < nb){
+        if(a[i] < b[j]){
+            i++;
+        }else if(a[i] > b[j]){
+            j++;
+        }else{
+            count++;
+            i++;
+            j++;
+        }
+    }
+    return count;
+}
+
+//36
+int comuns (int a[], int na, int b[], int nb){
+    int i, j, count = 0, flag = 0;
+
+    for(i = 0; i < na; i++){
+        for(j = 0; j < nb; j++){
+            if(a[i] == b[j] && flag == 0){
+                count++;
+                flag = 1;
+            }
+        }
+        flag = 0;
+    }
+    return count;
+}
+
+//37
+int minInd (int v[], int n){
+    int i, menor = v[0], menor_ind = 0;
+
+    for(i = 0; i < n; i++){
+        if(v[i] < menor){
+            menor = v[i];
+            menor_ind = i;
+        }
+    }
+    return menor_ind;
+}
+
 int main(){
     int perg = 0;
 
