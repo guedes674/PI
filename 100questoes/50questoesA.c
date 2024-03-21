@@ -645,6 +645,46 @@ int minInd (int v[], int n){
     return menor_ind;
 }
 
+//38
+void somasAc (int v[], int Ac [], int N){
+    int i, j, acc;
+
+    for(i = 0; i < N; i++){
+        acc = 0;
+        for(j = 0; j <= i; j++){
+            acc += v[j];
+        }
+        Ac[i] = acc;
+    }
+}
+
+//39
+int triSup (int N, float m [N][N]){
+    int i, j;
+
+    for(i = 1; i < N; i++){
+        for(j = 0; j < i; j++){
+            if(m[i][j] != 0){
+                return 0;
+            }
+        }
+    }
+    return 1;
+}
+
+//40
+void transposta (int N, float m [N][N]){
+    int i, j;
+    float aux;
+    for(i = 0; i < N; i++){
+        for(j = i; j < N; j++){
+            aux = m[i][j];
+            m[i][j] = m[j][i];
+            m[j][i] = aux;
+        }
+    }
+}
+
 int main(){
     int perg = 0;
 
