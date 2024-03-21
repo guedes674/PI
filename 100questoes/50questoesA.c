@@ -720,6 +720,38 @@ int intersectSet (int N, int v1[N], int v2[N], int r[N]){
     }
 }
 
+//44
+int intersectMSet (int N, int v1[N], int v2[N], int r[N]){
+    int i = 0;
+
+    while(i < N){
+        if(v1[i] != 0 && v2[i] != 0){
+            if(v1[i] > v2[i]){
+                r[i] = v2[i];
+            }else{
+                r[i] = v1[i];
+            }
+        }
+        i++;
+    }
+}
+
+//45
+int unionMSet (int N, int v1[N], int v2[N], int r[N]){
+    int i = 0;
+
+    while(i < N){
+        if(v1[i] != 0 || v2[i] != 0){
+            if(v1[i] > v2[i]){
+                r[i] = v1[i];
+            }else{
+                r[i] = v2[i];
+            }
+        }
+        i++;
+    }
+}
+
 int main(){
     int perg = 0;
 
