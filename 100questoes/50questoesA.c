@@ -685,6 +685,41 @@ void transposta (int N, float m [N][N]){
     }
 }
 
+//41
+void addTo (int N, int M, int a [N][M], int b[N][M]){
+    int i, j;
+
+    for(i = 0; i < N; i++){
+        for(j = 0; j < M; j++){
+            a[i][j] += b[i][j];
+        }
+    }
+}
+
+//42
+int unionSet (int N, int v1[N], int v2[N], int r[N]){
+    int i = 0;
+
+    while(i < N){
+        if(v1[i] != 0 || v2[i] != 0){
+            r[i] = 1;
+        }
+        i++;
+    }
+}
+
+//43
+int intersectSet (int N, int v1[N], int v2[N], int r[N]){
+    int i = 0;
+
+    while(i < N){
+        if(v1[i] != 0 && v2[i] != 0){
+            r[i] = 1;
+        }
+        i++;
+    }
+}
+
 int main(){
     int perg = 0;
 
