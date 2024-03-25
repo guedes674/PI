@@ -752,6 +752,71 @@ int unionMSet (int N, int v1[N], int v2[N], int r[N]){
     }
 }
 
+//46
+int cardinalMSet (int N, int v[N]){
+    int i = 0, count = 0;
+
+    while(i < N){
+        if(v[i] != 0){
+            count += v[i];
+        }
+        i++;
+    }
+    return count;
+}
+
+//47
+typedef enum movimento {Norte, Oeste, Sul, Este} Movimento;
+typedef struct posicao {
+int x, y;
+} Posicao;
+
+Posicao posFinal (Posicao inicial, Movimento mov[], int N){
+    int i = 0;
+
+    while(i < N){
+        if(mov[i] == Norte){
+            inicial.y += 1;
+        }else if(mov[i] == Sul){
+            inicial.y -= 1;
+        }else if(mov[i] == Oeste){
+            inicial.x -= 1;
+        }else{
+            inicial.x += 1;
+        }
+        i++;
+    }
+    return inicial;
+}
+
+//48
+int caminho (Posicao inicial, Posicao final, Movimento mov[], int N){
+    int i = 0;
+
+    while (i < N && (inicial.x != final.x || inicial.y != final.y)){
+        if(inicial.x < final.x){
+            mov[i] = Este;
+            inicial.x ++;
+        }else if (inicial.x > final.x){
+            mov[i] = Oeste;
+            inicial.x --;
+        }else if (inicial.y > final.y){
+            mov[i] = Sul;
+            inicial.y --;
+        }else if(inicial.y < final.y){
+            mov[i] = Norte;
+            inicial.y ++;
+        }
+        i++;
+    }
+    
+    if((inicial.x != final.x) || (inicial.y != final.y)){
+        return -1;
+    }else{
+        return i;
+    }
+}
+
 int main(){
     int perg = 0;
 
