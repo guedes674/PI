@@ -817,6 +817,35 @@ int caminho (Posicao inicial, Posicao final, Movimento mov[], int N){
     }
 }
 
+//49
+int maisCentral (Posicao pos[], int N){
+    int i = 0, ret = 0, dist = sqrt(pow(pos[i].x,2) + pow(pos[i].y,2));
+
+    while(i < N){
+        if(sqrt(pow(pos[i].x,2) + pow(pos[i].y,2)) <= dist){
+            ret = i;
+            dist = sqrt(pow(pos[i].x,2) + pow(pos[i].y,2));
+        }
+        i++;
+    }
+    return ret;
+}
+
+//50
+int vizinhos (Posicao p, Posicao pos[], int N){
+    int i = 0, count = 0;
+
+    while(i < N){
+        if((sqrt((pow(pos[i].x - p.x,2)) + (pow(pos[i].y - p.y,2))) <= 1)){
+            if((pos[i].x == p.x && pos[i].y != p.y) || (pos[i].x != p.x && pos[i].y == p.y) || (pos[i].x != p.x && pos[i].y != p.y)){
+                count++;
+            }
+        }
+        i++;
+    }
+    return count;
+}
+
 int main(){
     int perg = 0;
 
