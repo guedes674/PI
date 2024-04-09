@@ -84,13 +84,29 @@ void merge (LInt *r, LInt l1, LInt l2){
     while(l1 || l2){
         if((l1 && l2 && l1 -> valor < l2 -> valor) || !l2){
             (*r) = l1;
-            r = &((*r) -> prox);
             l1 = l1 -> prox;
         }else{
             (*r) = l2;
-            r = &((*r) -> prox);
             l2 = l2 -> prox;
         }
+        r = &((*r) -> prox);
     }
     (*r) = NULL;
+}
+
+//8
+void splitQS (LInt l, int x, LInt *mx, LInt *Mx){
+
+    while(l){
+        if(l && l -> valor < x){
+            (*mx) = l;
+            mx = &((*mx) -> prox);
+        }else{
+            (*Mx) = l;
+            Mx = &((*Mx) -> prox);
+        }
+        l = l -> prox;
+    }
+    (*mx) = NULL;
+    (*Mx) = NULL;
 }
