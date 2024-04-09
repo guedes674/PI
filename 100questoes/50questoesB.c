@@ -110,3 +110,43 @@ void splitQS (LInt l, int x, LInt *mx, LInt *Mx){
     (*mx) = NULL;
     (*Mx) = NULL;
 }
+
+//9
+LInt parteAmeio (LInt *l){
+    int count = length(*l)/2;
+    LInt y = (*l);
+    LInt ant = NULL;
+    
+    if(count == 0){
+        return NULL;
+    }
+
+    while(count > 0){
+        count--;
+        ant = (*l);
+        (*l) = (*l) -> prox;
+    }
+    ant -> prox = NULL;
+    return y;
+}
+
+//10
+int removeAll (LInt *l, int x){
+    int count = 0, flag = 0;
+    LInt aux = (*l);
+
+    while(*l){
+        if((*l) -> valor == x){
+            count++;
+            aux = (*l) -> prox;
+            free(*l);
+            (*l) = aux;
+            flag = 1;
+        }
+        if(flag != 1){
+            l = &((*l) -> prox);
+        }
+        flag = 0;
+    }
+    return count;
+}
