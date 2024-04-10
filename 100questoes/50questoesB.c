@@ -234,3 +234,96 @@ void concatL (LInt *a, LInt b){
 
     (*a) = (*n);
 }
+
+//16
+LInt cloneL (LInt l){
+    LInt nova_lista;
+    LInt ap*;
+
+    (*ap) = &nova_lista;
+
+    while(l){
+        (*ap) = malloc(sizeof(struct lligada));
+        (*ap) -> valor = l -> valor;
+        l = l -> prox;
+        ap = &((*ap) -> prox);
+    }
+
+    *ap = NULL;
+
+    return nova_lista;
+}
+
+//17
+LInt cloneRev (LInt l){
+    LInt aux = NULL;
+    LInt ret = NULL;
+
+    while(l){
+        aux = malloc(sizeof(struct lligada));
+        aux -> valor = l -> valor;
+        aux -> prox = ret;
+        ret = aux;
+        
+        l = l -> prox;
+    }
+
+    return aux;
+}
+
+//18
+int maximo (LInt l){
+    int maximo = 0;
+
+    for(; l; l = l -> prox){
+        if(l -> valor > maximo){
+            maximo = l -> valor;
+        }
+    }
+
+    return maximo;
+}
+
+//19
+int take (int n, LInt *l){
+    int i = 0;
+    LInt temp;
+
+    while((*l) && i < n){
+        i++;
+        l = &((*l) -> prox);
+    }
+
+    while(*l){
+        temp = (*l) -> prox;
+        free(*l);
+        (*l) = temp;
+    }
+
+    return i;
+}
+
+//20
+int drop (int n, LInt *l){
+    int i = 0;
+    LInt temp;
+
+    while((*l) && i < n){
+        temp = (*l) -> prox;
+        free(*l);
+        (*l) = temp;
+        i++;
+    }
+    return i;
+}
+
+//21
+LInt NForward (LInt l, int N){
+
+    while(N > 0){
+        N--;
+        l = l -> prox;
+    }
+
+    return l;
+}
