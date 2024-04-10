@@ -150,3 +150,87 @@ int removeAll (LInt *l, int x){
     }
     return count;
 }
+
+//11
+int removeDups (LInt *l){
+    int count = 0;
+
+    for(; (*l); l = &((*l) -> prox)){
+        LInt ant = (*l);
+        LInt seg = (*l) -> prox;
+        for(; seg; seg = ant -> prox){
+            if((*l) -> valor == seg -> valor){
+                count++;
+                ant -> prox = seg -> prox;
+                free(seg);
+            }else{
+                ant = seg;
+            }
+        }
+    }
+    return count;
+}
+
+//12
+int findMaior (LInt *l){
+    int maior = 0;
+
+    for(;*l; l = &(*l) -> prox){
+        if((*l) -> valor >= maior){
+            maior = (*l) -> valor;
+        }
+    }
+    return maior;
+}
+
+int removeMaiorL (LInt *l){
+    int maior = findMaior(l);
+    LInt temp;
+    
+    while((*l) -> valor != maior){
+        l = &((*l) -> prox);
+    }
+    
+    temp = (*l) -> prox;
+    free(*l);
+    (*l) = temp;
+    
+    return maior;
+}
+
+//13
+void init (LInt *l){
+    LInt temp;
+
+    while((*l) -> prox){
+        l = &((*l) -> prox);
+    }
+
+    temp = (*l) -> prox;
+    free(*l);
+    (*l) = temp;
+}
+
+//14
+void appendL (LInt *l, int x){
+    LInt novo = malloc(sizeof(struct lligada));
+    novo -> valor = x;
+    novo -> prox = NULL;
+
+    while(*l){
+        l = &((*l) -> prox);
+    }
+
+    (*l) = novo;
+}
+
+//15
+void concatL (LInt *a, LInt b){
+    LInt *n = &b;
+
+    while(*a){
+        a = &((*a) -> prox);
+    }
+
+    (*a) = (*n);
+}
