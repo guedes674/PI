@@ -327,3 +327,70 @@ LInt NForward (LInt l, int N){
 
     return l;
 }
+
+//22
+int listToArray (LInt l, int v[], int N){
+    int i = 0;
+
+    while(i < N && l){
+        v[i] = l -> valor;
+        l = l -> prox;
+        i++;
+    }
+    return i;
+}
+
+//23
+LInt arrayToList (int v[], int N){
+    
+    if(N == 0){
+        return NULL;
+    }
+    
+    LInt l = malloc(sizeof(struct lligada));
+    l -> valor = v[0];
+    l -> prox = NULL;
+    i++;
+
+    while(i < N){
+        l -> valor = v[i];
+        l = l -> prox;
+        i++;
+    }
+
+    l -> prox = NULL;
+
+    return l;
+}
+
+//24
+LInt somasAcL (LInt l){
+    LInt lista;
+    LInt *p = &lista;
+    int acc = 0;
+
+    for(; l; p = &((*p) -> prox)){
+        acc += l -> valor;
+        *p = malloc(sizeof(struct lligada));
+        (*p) -> valor = acc;
+        l = l -> prox;
+    }
+
+    (*p) = NULL;
+
+    return lista;
+}
+
+//25
+void remreps (LInt l){
+
+    for(; l; l = l -> prox){
+        LInt *p = &(l -> prox);
+
+        while((*p) && (*p) -> valor == l -> valor){
+            LInt temp = (*p);
+            (*p) = (*p) -> prox;
+            free(temp);
+        }
+    }
+}

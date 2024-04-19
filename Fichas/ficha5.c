@@ -51,13 +51,26 @@ void ordenaPorNum (Aluno t [], int N){
 
 //4
 void criaIndPorNum (Aluno t [], int N, int ind[]){
-    Aluno aux;
     int i, j;
 
     for(i = 0; i < N; i++){
         for(j = 0; j < N; j++){
             if(t[i].numero > t[j].numero){
                 ind[i] += 1;
+            }
+        }
+    }
+}
+
+//5
+void imprimeTurma (int ind[], Aluno t[], int N){
+    int i, j, pos = 0;
+
+    for(i = 0; i < N; i++){
+        for(j = 0; j < N; j++){
+            if(pos == ind[j]){
+                printf("%d %s %d \n", t[j].numero, t[j].nome, nota(t[j]));
+                pos++;
             }
         }
     }
