@@ -394,3 +394,70 @@ void remreps (LInt l){
         }
     }
 }
+
+//26
+LInt rotateL (LInt l){
+
+    if(length (l) <= 1){
+        return l;
+    }
+    
+    LInt h = l -> prox;
+
+    LInt p = l;
+
+    while(p -> prox){
+        p = p -> prox;
+    }
+    
+    p -> prox = l;
+    l -> prox = NULL;
+
+    return h;
+}
+
+//27
+LInt parte (LInt l){
+    LInt ret, *p = &ret, *p2 = &l;
+    int i = 0;
+
+    while(*p2){
+        if(i % 2 != 0){
+            (*p) = (*p2);
+            (*p2) = (*p2) -> prox;
+            p = &((*p) -> prox);
+        }else{
+            p2 = &((*p2) -> prox);
+        }
+        i++;
+    }
+    (*p) = NULL;
+    return ret;
+}
+
+typedef struct nodo {
+int valor;
+struct nodo *esq, *dir;
+} *ABin;
+
+//28
+int maior(int a, int b){
+    
+    if(a >= b){
+        return a;
+    }else{
+        return b;
+    }
+}
+
+int altura (ABin a){
+    int max = 0;
+
+    if(!a){
+        max = 0;
+    }else{
+        max = 1 + maior((altura(a -> esq)),(altura(a -> dir)));
+    }
+
+    return max;
+}
