@@ -94,3 +94,52 @@ int Sfront (SQueue q, int *x){
         return 0;
     }
 }
+
+//3
+typedef struct dinStack {
+    int size; // guarda o tamanho do array values
+    int sp;
+    int *values;
+} *DStack;
+
+void DinitStack (DStack s){
+    s -> sp = 0;
+    s -> size = 32;
+    s -> values = malloc(sizeof(struct dinStack));
+}
+
+int DisEmpty (DStack s){
+    return s -> values == NULL;
+}
+
+int Dpush (DStack s, int x){
+    s -> sp++;
+    if(s -> sp >= s -> size){
+        s -> size *= 2;
+        s -> values = realloc(s -> values, s -> size);
+        s -> values[s -> sp] = x;
+        return 1;
+    }else{
+        s -> values[s -> sp] = x;
+        return 0;
+    }
+}
+
+int Dpop (DStack s, int *x){
+    s -> sp--;
+    if(s -> sp <= 0){
+        return 1;
+    }else{
+        (*x) = s -> values[s -> sp];
+        return 0;
+    }
+}
+
+int Dtop (DStack s, int (*x)){
+    if(s -> sp == 0){
+        return 1;
+    }else{
+        (*x) = s -> values[s -> sp];
+        return 0;
+    }
+}
