@@ -461,3 +461,150 @@ int altura (ABin a){
 
     return max;
 }
+
+//29
+ABin cloneAB (ABin a){
+    ABin nova;
+
+    if(a){
+        nova = malloc(sizeof(struct nodo));
+        nova -> valor = a -> valor;
+        nova -> esq = cloneAB(a -> esq);
+        nova -> dir = cloneAB(a -> dir);
+    }else{
+        nova = NULL;
+    }
+
+    return nova;
+}
+
+//30
+void mirror (ABin *a) {
+    if((*a)){
+        ABin temp = (*a) -> esq;
+        (*a) -> esq = (*a) -> dir;
+        (*a) -> dir = temp;
+        mirror(&((*a) -> esq));
+        mirror(&((*a) -> dir));
+    }
+}
+
+//31
+void inorder (ABin a, LInt *l) {
+    
+    if(a){
+        inorder(a -> esq, l);
+        while(*l){
+            l = &((*l) -> prox);
+        }
+
+        (*l) = malloc(sizeof (struct nodo));
+        (*l) -> valor = a -> valor;
+
+        inorder(a -> dir, &((*l) -> prox));
+    }else{
+        (*l) = NULL;
+    }
+}
+
+//32
+void preorder (ABin a, LInt *l) {
+
+    if(a){
+        (*l) = malloc(sizeof (struct nodo));
+        (*l) -> valor = a -> valor;
+
+        preorder(a -> esq, &((*l) -> prox));
+        while(*l){
+            l = &((*l) -> prox);
+        }
+
+        preorder(a -> dir, l);
+
+    }else{
+        (*l) = NULL;
+    }
+}
+
+//33
+void posorder (ABin a, LInt *l) {
+
+    if(a){
+        posorder(a -> esq, l);
+        while(*l){
+            l = &((*l) -> prox);
+        }
+
+        posorder(a -> dir, l);
+        while(*l){
+            l = &((*l) -> prox);
+        }
+
+        (*l) = malloc(sizeof (struct nodo));
+        (*l) -> valor = a -> valor;
+        (*l) -> prox = NULL;
+    }else{
+        (*l) = NULL;
+    }
+}
+
+//34
+int depth (ABin a, int x){
+    int e, d;
+
+    if(a == NULL){
+        return -1;
+    }
+
+    if(a -> valor == x){
+        return 1;
+    }
+
+    e = depth(a -> esq, x);
+    d = depth(a -> dir, x);
+
+    if(e == -1 && d == -1){
+        return -1;
+    }else{
+        if(e == -1){
+            return 1+d;
+        }else if(d == -1){
+            return 1+e;
+        }
+        else{
+            if(e < d){
+                return 1+e;
+            }else{
+                return 1+d;
+            }
+        }
+    }
+}
+
+//35
+int freeAB (ABin a){
+    int ret = 0;
+    
+    if(a != NULL){
+        ABin tmp1 = a -> esq;
+        ABin tmp2 = a -> dir;
+        free(a);
+        ret = 1 + freeAB(tmp1) + freeAB(tmp2);
+    }
+
+    return ret;
+}
+
+//36
+int pruneAB (ABin *a, int l) {
+    int count = 0;
+
+    if((*a) != NULL && l > 0){
+        count = pruneAB(&(*a) -> esq, l-1) + pruneAB(&(*a) -> dir, l-1);
+    }else if((*a) != NULL && l <= 0){
+        count = 1 + pruneAB(&(*a) -> esq, l-1) + pruneAB(&(*a) -> dir, l-1);
+        free(*a);
+        *a = NULL;
+    }
+    return count;
+}
