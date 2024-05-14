@@ -608,3 +608,209 @@ int pruneAB (ABin *a, int l) {
     }
     return count;
 }
+
+
+//37
+int iguaisAB (ABin a, ABin b) {
+    if(!a && b || a && !b){
+        return 0;
+    }
+    
+    if(!a && !b || a == b){
+        return 1;
+    }
+    
+    return a -> valor == b -> valor && iguaisAB(a -> esq, b -> esq) && iguaisAB(a -> dir, b -> dir);
+}
+
+//38
+LInt concat(LInt a, LInt b){
+    if(!a){
+        return b;
+    }
+
+    LInt temp = a;
+
+    while(temp -> prox){
+        temp = temp -> prox;
+    }
+
+    temp -> prox = b;
+
+    return a;
+}
+
+LInt nivelL (ABin a, int n) {
+    LInt l = malloc(sizeof(struct lligada));
+
+    if(!a || n < 1){
+        return NULL;
+    }
+
+    if(n == 1){
+        l -> valor = a -> valor;
+        l -> prox = NULL;
+        return l;
+    }else{
+        l = concat(nivelL(a -> esq, n-1),nivelL(a -> dir, n-1));
+    }
+}
+
+//39
+int nivelV (ABin a, int n, int v[]) {
+    if(!a || n < 1){
+        return 0;
+    }
+    if(n == 1){
+        *v = a -> valor;
+        return 1;
+    }else{
+        int e = nivelV(a -> esq, n-1, v);
+        int d = nivelV(a -> dir, n-1, v+e);
+        return e+d;
+    }
+}
+
+//40
+int dumpAbin (ABin a, int v[], int N) {
+    if(!a || N < 0){
+        return 0;
+    }
+    int e = dumpAbin (a -> esq, v, N);
+    
+    if(e < N){
+        *(v+e) = a -> valor;
+        int d = dumpAbin (a -> dir, v+e+1, N-e-1);
+        return e+d+1;
+    }else{
+        return N;
+    }
+}
+
+//41
+int accAbin(ABin a){
+    int acc = 0;
+
+    if(!a){
+        return 0;
+    }else{
+        acc += a -> valor + accAbin(a -> esq) + accAbin(a -> dir);
+        return acc;
+    }
+}
+
+ABin somasAcA (ABin a) {
+    ABin ret = malloc(sizeof (struct nodo));
+
+    if(!a){
+        return NULL;
+    }else{
+        ret -> valor = accAbin(a);
+        ret -> esq = somasAcA (a -> esq);
+        ret -> dir = somasAcA (a -> dir);
+    }
+
+    return ret;
+}
+
+//42
+int contaFolhas (ABin a) {
+
+    if(!a){
+        return 0;
+    }
+
+    if(!(a -> esq) && !(a -> dir)){
+        return 1;
+    }
+
+    return contaFolhas(a -> esq) + contaFolhas(a -> dir);
+}
+
+//43
+ABin cloneMirror (ABin a) {
+    ABin ret = malloc(sizeof (struct nodo));
+
+    if(!a){
+        return NULL;
+    }else{
+        ret -> valor = a -> valor;
+        ret -> esq = cloneMirror(a -> dir);
+        ret -> dir = cloneMirror(a -> esq);
+    }
+
+    return ret;
+}
+
+//44
+int addOrd (ABin *a, int x){
+    int ret = 0;
+
+    if(!(*a)){
+        (*a) = malloc(sizeof (struct nodo));
+        (*a) -> valor = x;
+        (*a) -> esq = NULL;
+        (*a) -> dir = NULL;
+        return 0;
+    }
+
+    if(x > (*a) -> valor){
+        ret = addOrd(&(*a) -> dir, x);
+    }else if (x < (*a) -> valor){
+        ret = addOrd(&(*a) -> esq, x);
+    }else{
+        return 1;
+    }
+
+}
+
+//45
+int lookupAB (ABin a, int x) {
+    int e = 0, d = 0;
+
+    if(!a){
+        return 0;
+    }
+
+    if(a -> valor == x){
+        return 1;
+    }else{
+        e = lookupAB(a -> esq, x);
+        d = lookupAB(a -> dir, x);
+    }
+
+    if(e == 1 || d == 1){
+        return 1;
+    }else{
+        return 0;
+    }
+}
+
+//46
+int depthOrd (ABin a, int x) {
+    int n = 1;
+
+    while(a){
+        if(x > a -> valor){
+            a = a -> dir;
+            n++;
+        }else if(x < a -> valor){
+            a = a -> esq;
+            n++;
+        }else{
+            return n;
+        }
+    }
+
+    return -1;
+}
+
+//47
+int maiorAB (ABin a){
+
+    while(a -> dir){
+        a = a -> dir;
+    }
+
+    return a -> valor;
+}
