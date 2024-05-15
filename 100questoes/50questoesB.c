@@ -814,3 +814,112 @@ int maiorAB (ABin a){
 
     return a -> valor;
 }
+
+//48
+void removeMaiorA (ABin *a){
+    ABin tmp;
+    
+    while((*a) -> dir){
+        a = &((*a) -> dir);
+    }
+    tmp = (*a);
+    (*a) = (*a) -> esq;
+    free(tmp);
+}
+
+//49
+int quantosMaiores (ABin a, int x){
+
+    if(!a){
+        return 0;
+    }
+
+    if(x < a -> valor){
+        return 1 + quantosMaiores(a -> esq, x) + quantosMaiores(a -> dir, x);
+    }else{
+        return quantosMaiores(a -> dir, x);
+    }
+}
+
+//50
+void listToBTree (LInt l, ABin *a) {
+
+    while(l){
+        (*a) = malloc(sizeof(struct nodo));
+        (*a) -> valor = l -> valor;
+        (*a) -> esq = NULL;
+        a = (&(*a) -> dir);
+        l = l -> prox;
+    }
+
+    (*a) = NULL;
+}
+
+//51
+int maximo (ABin a){
+    int max;
+    
+    if(!a){
+        return -1;
+    }
+
+    if(!(a -> esq)){
+        max = maximo(a -> dir);
+    }
+
+    if(!(a -> dir) || (!(a -> esq) && !(a -> dir))){
+        return a -> valor;
+    }
+    
+    else{
+        return maximo(a -> dir);
+    }
+
+}
+
+int minimo (ABin a){
+    
+    if(!a){
+        return -1;
+    }
+
+    if(!(a -> esq) || (!(a -> esq) && !(a -> dir))){
+        return a -> valor;
+    }
+
+    if(!(a -> dir)){
+        return minimo(a -> esq);
+    }
+    
+    else{
+        minimo(a -> dir);
+    }
+}
+
+int deProcura (ABin a) {
+    if(!a){
+        return 1;
+    }
+
+    if(!(a -> esq) && !(a -> dir)){
+        return 1;
+    }
+
+    if(!(a -> esq)){
+        return (deProcura (a -> dir) && (a -> valor < minimo(a -> dir)));
+    }
+
+    if(!(a -> dir)){
+        return (deProcura (a -> esq) && (a -> valor > maximo (a -> esq)));
+    }
+
+    if(((a -> valor > (a -> esq) -> valor) && (a -> valor < (a -> dir) -> valor)) && a -> valor > maximo(a -> esq) && a -> valor < minimo(a -> dir)){
+        if(deProcura (a -> esq)){
+            return deProcura (a -> dir);
+        }else{
+            return 0;
+        }
+    }else{
+        return 0;
+    }
+}
